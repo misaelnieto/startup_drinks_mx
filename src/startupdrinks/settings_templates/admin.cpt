@@ -1,1 +1,15 @@
-admin.cpt
+<!DOCTYPE html>
+<html lang="en" metal:use-macro="context/@@adminmacros/macros/sd_admin">
+<head>
+</head>
+<body>
+    <!-- slot 'mycontent' was defined in adminmacros.cpt -->
+    <div metal:fill-slot="admin_content">
+        <div class="hero-unit">
+            <h1>Hola administrador!</h1>
+            <p>Este es el panel de control de StartupDrinksMX</p>
+            <p>Usa los links que estan a la izquierda para administrar el sitio.</p>
+          </div>
+    </div>
+</body>
+</html>

@@ -25,6 +25,13 @@ from .events import OnAppInit
 #                                prefix='sd.MailerSettings')
 
 
+class AdminMacros(grok.View):
+    """
+    This is a helper view for ZPT macros
+    """
+    grok.context(ifaces.IMainApp)
+
+
 class Admin(grok.View):
     grok.context(ifaces.IMainApp)
 

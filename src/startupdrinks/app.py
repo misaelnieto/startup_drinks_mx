@@ -19,6 +19,7 @@ class StartupDrinks(grok.Application, grok.Container):
 
 
 class Index(grok.View):
-    def update(self):
-        resource.bootstrap.need()
-        resource.styles.need()
+    pass
+    # def update(self):
+    #     resource.bootstrap.need()
+    #     resource.styles.need()
