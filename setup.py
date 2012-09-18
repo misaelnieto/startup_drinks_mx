@@ -2,18 +2,18 @@ from setuptools import setup, find_packages
 
 version = '0.0'
 
-setup(name='sd_buildout',
+setup(name='startupdrinks',
       version=version,
       description="",
       long_description="""\
 """,
       # Get strings from http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[],
-      keywords="",
-      author="",
-      author_email="",
-      url="",
-      license="",
+      keywords="grok zope",
+      author="Noe Nieto",
+      author_email="nnieto@noenieto.com",
+      url="http://startupdrinks.mx/",
+      license="GPL",
       package_dir={'': 'src'},
       packages=find_packages('src'),
       include_package_data=True,
@@ -25,10 +25,15 @@ setup(name='sd_buildout',
                         'zope.fanstatic',
                         'grokcore.chameleon',
                         'grokcore.startup',
-                        # Add extra requirements here
+                        'plone.i18n',
+                        'Pillow',
+                        'dolmen.blob',
+                        'dolmen.widget.image'
+                        'dolmen.thumbnailer',
+                        'plone.registry',
                         ],
       entry_points={
           'fanstatic.libraries': [
-              'sd_buildout = sd_buildout.resource:library',
+              'startupdrinks = startupdrinks.resource:library',
           ]
       })
