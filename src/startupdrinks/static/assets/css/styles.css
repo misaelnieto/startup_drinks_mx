@@ -1,0 +1,102 @@
+.container {
+    width: 960px;
+}
+
+.container .beer {
+    position: relative;
+    background: #ffffff;
+}
+
+.beer ul.cities {
+    bottom: 40px;
+    position: absolute;
+    right: 45px;
+}
+
+.beer ul.cities li {
+    display: inline;
+    padding: 1em;
+}
+
+.beer ul.cities li a:visited,
+.beer ul.cities li a {
+    text-transform: uppercase;
+}
+
+.beer ul.cities li a:hover {
+    text-decoration: none;
+}
+
+.sponsor, .slideshow {
+    height: 360px;
+    background: #000;
+}
+
+.sponsor {
+    margin: 5px 2.5px 5px 0;
+}
+
+.slideshow {
+    margin: 5px 0 5px 2.5px;
+}
+
+.map {
+    background:  #d4503b url(../img/fondo-mapa.jpg) no-repeat scroll center center;
+    height: 567px;
+}
+
+ul.links {
+    list-style: none outside none;
+    margin-left: 0;
+    margin-top: 4em;
+}
+
+ul.links li a {
+    background: none repeat scroll 0 0 #DFC000;
+    color: black;
+    display: block;
+    font-size: 17px;
+    margin: 1em 0;
+    padding: 0.55em;
+    text-decoration: none;
+}
+
+ul.logos {
+    list-style: none outside none;
+    margin-top: -2em;
+}
+
+#map_canvas {
+    height: 100%;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8em;
+    clear: both;
+    position: fixed;
+    bottom: 0px !important;
+    background: white;
+    min-width: 960px;
+    margin: 0 auto;
+    padding: 10px 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    display: block;
+    opacity: 1;
+    -moz-box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
+    -webkit-box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
+    -o-box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
+    box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
+}
+
+#global_sponsors {
+    padding-top: 5px;
+}
+
+footer #global_sponsors img {
+    max-width: 150px;
+    max-height: 50px;
+}
