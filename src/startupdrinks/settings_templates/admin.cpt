@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" metal:use-macro="context/@@adminmacros/macros/sd_admin">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      lang="en"
+      metal:use-macro="path: context/@@adminmacros/template/macros/sd_admin">
 <head>
 </head>
 <body>

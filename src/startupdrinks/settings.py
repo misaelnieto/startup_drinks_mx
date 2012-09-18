@@ -4,6 +4,7 @@ from plone.registry.interfaces import IRegistry
 
 from . import interfaces as ifaces
 from .events import OnAppInit
+from . import resource
 
 # Utilities
 
@@ -34,4 +35,9 @@ class AdminMacros(grok.View):
 
 class Admin(grok.View):
     grok.context(ifaces.IMainApp)
+
+    def update(self):
+        super(Admin, self).update()
+        resource.bootstrap.need()
+        resource.admin_css.need()
 
