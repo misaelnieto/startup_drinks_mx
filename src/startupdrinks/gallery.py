@@ -5,6 +5,7 @@ from zope.schema.fieldproperty import FieldProperty
 import grok
 
 from . import interfaces as ifaces
+from . import _
 
 
 class Gallery(grok.OrderedContainer):
@@ -15,7 +16,7 @@ class Photo(grok.Model):
     grok.implements(ifaces.IPhoto)
 
     picture = BlobProperty(ifaces.IPhoto['picture'])
-    description = FieldProperty(ifaces.IPºhoto['description'])
+    description = FieldProperty(ifaces.IPhoto['description'])
 
 
 class Index(grok.View):
@@ -47,7 +48,7 @@ class AddPhoto(grok.AddForm):
         return self.redirect(self.url(self.context))
 
 
-class DeletePhoto(grok.Add):
+class DeletePhoto(grok.Form):
     grok.context(ifaces.IPhoto)
     grok.name('delete')
 

@@ -29,7 +29,7 @@ class IPlace(Interface):
         required=False
     )
 
-    url = schema.URL(
+    url = schema.URI(
         title=_(u'URL of the site')
     )
 

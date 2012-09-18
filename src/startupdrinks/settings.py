@@ -25,6 +25,6 @@ from .events import OnAppInit
 #                                prefix='sd.MailerSettings')
 
 
-class ControlPanel(grok.View):
+class Admin(grok.View):
     grok.context(ifaces.IMainApp)
 

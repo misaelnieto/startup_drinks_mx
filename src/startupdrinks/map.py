@@ -5,6 +5,7 @@ from zope.traversing.api import getParent
 import grok
 
 from . import interfaces as ifaces
+from . import _
 
 class Map(grok.Container):
     """
