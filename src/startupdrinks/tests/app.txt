@@ -1,11 +1,11 @@
 Do a functional doctest test on the app.
 ========================================
 
-Let's first create an instance of Sd_buildout at the top level:
+Let's first create an instance of StartupDrinks at the top level:
 
-    >>> from sd_buildout.app import Sd_buildout
+    >>> from startupdrinks.app import StartupDrinks
     >>> root = getRootFolder()
-    >>> root['app'] = Sd_buildout()
+    >>> root['app'] = StartupDrinks()
 
 Run tests in the testbrowser
 ----------------------------
@@ -29,14 +29,14 @@ Check some basic information about the page you visit:
     >>> print browser.contents
     <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="http://localhost/fanstatic/sd_buildout/style.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost/fanstatic/startupdrinks/style.css" />
     <base href="http://localhost/app/@@index" />
     </head>
     <body>
       <h1>Congratulations!</h1>
       <p>Your Grok application is up and running.
-      Edit <code>sd_buildout/app_templates/index.pt</code> to change
+      Edit <code>startupdrinks/app_templates/index.pt</code> to change
       this page.</p>
-      <img src="http://localhost/fanstatic/sd_buildout/evencaveman.jpg" />
+      <img src="http://localhost/fanstatic/startupdrinks/evencaveman.jpg" />
     </body>
     </html>

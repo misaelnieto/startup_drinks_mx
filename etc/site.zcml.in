@@ -1,9 +1,9 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           i18n_domain="sd_buildout">
+           i18n_domain="startupdrinks">
 
-  <include package="sd_buildout" />
+  <include package="startupdrinks" />
 
-    <configure i18n_domain="sd_buildout">
+    <configure i18n_domain="startupdrinks">
 
       <unauthenticatedPrincipal id="zope.anybody"
                                 title="Unauthenticated User" />

@@ -1,4 +1,4 @@
-# The tests in test_sd_buildout.py are picked up by zope.testrunner.
+# The tests in test_main_app.py are picked up by zope.testrunner.
 
 # When decorating a unittest.TestCase or doctest with a layer, the layer is
 # used to group tests and execute setup and teardown of the grok environment
@@ -9,9 +9,9 @@ import doctest
 
 from zope.fanstatic.testing import ZopeFanstaticBrowserLayer
 
-import sd_buildout.tests
+import startupdrinks.tests
 
-browser_layer = ZopeFanstaticBrowserLayer(sd_buildout.tests)
+browser_layer = ZopeFanstaticBrowserLayer(startupdrinks.tests)
 
 def test_suite():
     suite = unittest.TestSuite()

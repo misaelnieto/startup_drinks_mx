@@ -1,10 +1,10 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
-   i18n_domain="sd_buildout"
-   package="sd_buildout"
+   i18n_domain="startupdrinks"
+   package="startupdrinks"
    >
 
-  <include package="sd_buildout" />
+  <include package="startupdrinks" />
 
   <!-- Typical functional testing security setup -->
   <securityPolicy
