@@ -15,12 +15,15 @@ class StartupDrinks(grok.Application, grok.Container):
 
         #Add banner
         self['banner'] = Banner()
+        grok.notify(grok.ObjectCreatedEvent(self['banner']))
 
         #Add Gallery
         self['gallery'] = Gallery()
+        grok.notify(grok.ObjectCreatedEvent(self['gallery']))
 
         #Add Map
         self['map'] = Map()
+        grok.notify(grok.ObjectCreatedEvent(self['map']))
 
         #Add settings?
 
