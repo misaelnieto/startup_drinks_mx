@@ -1,6 +1,9 @@
+# from plone.registry import Registry
+# from plone.registry.interfaces import IRegistry
+from megrok.pagetemplate import PageTemplate
+from megrok.z3cform.base.components import GrokForm
+from zope.interface import Interface
 import grok
-from plone.registry import Registry
-from plone.registry.interfaces import IRegistry
 
 from . import interfaces as ifaces
 from .events import OnAppInit
@@ -30,7 +33,7 @@ class AdminMacros(grok.View):
     """
     This is a helper view for ZPT macros
     """
-    grok.context(ifaces.IMainApp)
+    grok.context(Interface)
 
 
 class Admin(grok.View):
@@ -41,3 +44,6 @@ class Admin(grok.View):
         resource.bootstrap.need()
         resource.admin_css.need()
 
+
+class AdminFormTemplate(PageTemplate):
+    grok.view(GrokForm)

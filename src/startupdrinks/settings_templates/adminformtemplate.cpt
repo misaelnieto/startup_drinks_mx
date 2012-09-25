@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      lang="en"
+      metal:use-macro="path: context/@@adminmacros/template/macros/sd_admin">
+<head>
+</head>
+<body>
+    <!-- slot 'mycontent' was defined in adminmacros.cpt -->
+    <div metal:fill-slot="admin_content">
+      <metal:block define-macro="block">
+        <section id="form">
+        <form action="." class="form-horizontal" enctype="multipart/form-data"
+              method="post"
+              tal:attributes="action view.action or request.URL"
+              tal:define="errors path:view/widgets/errors|nothing">
+          <legend tal:content="view.label"></legend>
+          <p i18n:translate="" tal:condition="errors">Check fields highlighted in red</p>
+          <div class="widget" tal:repeat="widget path:view/widgets/values">
+            <div class="control-group" 
+                 tal:attributes="class widget.error and 'control-group error' or 'control-group'">
+              <label for=""
+                     tal:attributes="for widget.id"
+                     tal:content="widget.label"></label>
+              <input type="text" tal:replace="structure widget.render()"/>
+              <div class="help-inline" 
+                   tal:content="structure path:widget/error/render"
+                   tal:condition="widget.error"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <tal:actions repeat="action path:view/actions/values">
+              <input type="submit" tal:replace="structure action.render()"/>
+            </tal:actions>
+          </div>
+        </form>
+        </section>
+      </metal:block>
+    </div>
+</body>
+</html>
