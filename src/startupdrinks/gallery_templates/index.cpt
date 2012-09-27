@@ -1,1 +1,41 @@
-Galler goes here!
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      lang="en"
+      metal:use-macro="path: context/@@adminmacros/template/macros/sd_admin">
+<head>
+</head>
+<body>
+    <!-- slot 'mycontent' was defined in adminmacros.cpt -->
+    <div metal:fill-slot="admin_content"
+         tal:define="base_url view.application_url()">
+      <h1>This is the gallery</h1>
+      <div class="well">
+         <a class="btn btn-large btn-primary" href="#" 
+            tal:attributes="href string:${base_url}/gallery/add">Upload a new pic</a>
+      </div>
+      <ul class="thumbnails">
+        <li class="span4"
+            tal:repeat="photo path:context/values">
+            <div class="thumbnail">
+              <img src="http://placehold.it/300x200" 
+                   height="300" width="300"
+                   tal:attributes="src view.url(photo, '++download++picture')"/>
+              <h3 tal:content="path: photo/picture/filename">file_name.jpg</h3>
+              <p tal:content="path: photo/description">
+                Donec id elit non mi porta gravida at eget metus. Nullam id dolor
+                id nibh ultricies vehicula ut id elit.
+              </p>
+              <a class="btn btn-danger" href="#"
+                 tal:attributes="href view.url(photo, 'delete')">Destroy it!</a>
+            </div>
+        </li>
+      </ul>
+      <div class="well" tal:condition="len(context.keys())">
+         <a class="btn btn-large btn-primary"
+            tal:attributes="href string:${base_url}/gallery/add">Upload a new pic</a>
+      </div>
+    </div>
+</body>
+</html>

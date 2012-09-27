@@ -1,5 +1,8 @@
 .container {
     width: 960px;
+    margin-bottom: 150px;
+    -webkit-box-shadow:  0 2px 5px 5px rgba(55, 55, 55, 0.8);
+    box-shadow:  0 2px 5px 5px rgba(55, 55, 55, 0.8);
 }
 
 .container .beer {
@@ -45,13 +48,13 @@
     height: 567px;
 }
 
-ul.links {
+.links {
     list-style: none outside none;
     margin-left: 0;
-    margin-top: 4em;
+    margin-top: 2em;
 }
 
-ul.links li a {
+.links li a {
     background: none repeat scroll 0 0 #DFC000;
     color: black;
     display: block;
@@ -61,13 +64,39 @@ ul.links li a {
     text-decoration: none;
 }
 
-ul.logos {
+.logos {
     list-style: none outside none;
-    margin-top: -2em;
+}
+
+.logos li {
+    margin: 0;
+    padding: 0;
+    height: 140px;
 }
 
 #map_canvas {
     height: 100%;
+}
+
+.carousel {
+    height: 225px;
+    background: #000;
+    margin: 0;
+}
+
+.carousel-inner {
+    margin-bottom: 20px
+}
+
+.carousel .item {
+    text-align: center;
+}
+
+.carousel .item_wrap {
+    display: inline-block;
+    /*float: left;*/
+    width: 300px;
+    position: relative;
 }
 
 footer {
@@ -75,7 +104,7 @@ footer {
     font-size: 0.8em;
     clear: both;
     position: fixed;
-    bottom: 0px !important;
+    bottom: 0 !important;
     background: white;
     min-width: 960px;
     margin: 0 auto;

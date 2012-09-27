@@ -1,4 +1,5 @@
 import grok
+from itertools import izip_longest
 
 from . import resource
 from . import _
@@ -34,4 +35,17 @@ class Index(grok.View):
         resource.bootstrap.need()
         resource.styles_css.need()
         resource.map_init_js.need()
+        resource.landing_page_js.need()
 
+    def gallery_groups(self):
+        """
+        Returns all gallery pictures in groups of three each.
+        modified version of grouper function found in itertools documentation
+        """
+
+        "Collect data into fixed-length chunks or blocks"
+        # grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx
+        n = 3
+        iterable = self.context['gallery'].values()
+        args = [iter(iterable)] * 3
+        return izip_longest(fillvalue=None, *args)

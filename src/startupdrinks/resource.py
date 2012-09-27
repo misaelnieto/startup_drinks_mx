@@ -12,6 +12,7 @@ bootstrap_js = Resource(library, 'bootstrap/js/bootstrap.js')
 bootstrap = Group(depends=[bootstrap_css, bootstrap_responsive_css, jquery, bootstrap_js])
 
 #These are the specifics of this application
-styles_css = Resource(library, 'assets/css/styles.css')
-admin_css = Resource(library, 'assets/css/admin.css')
+styles_css = Resource(library, 'assets/css/styles.css', depends=[bootstrap_css])
+admin_css = Resource(library, 'assets/css/admin.css', depends=[bootstrap_css])
 map_init_js = Resource(library, 'assets/js/map_init.js')
+landing_page_js = Resource(library, 'assets/js/landing_page.js', depends=[bootstrap])

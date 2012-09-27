@@ -1,8 +1,6 @@
 from dolmen.blob import BlobProperty
-from megrok import pagetemplate
 from zope.traversing.api import getParent
 import grok
-import grokcore.layout
 import megrok.z3cform.base as z3cform
 
 from . import interfaces as ifaces
@@ -48,8 +46,3 @@ class BannerEditForm(z3cform.EditForm):
 
         parent = getParent(self.context)
         self.redirect(self.url(parent, 'admin'))
-
-
-# class BannerEditPageTemplate(pagetemplate.PageTemplate):
-#     grok.view(BannerEditForm)
-#     template = grok.template('edit')
