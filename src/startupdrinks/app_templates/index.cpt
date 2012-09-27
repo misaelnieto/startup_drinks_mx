@@ -18,7 +18,7 @@
     <div class="container">
       <div class="flyer row-fluid">
         <div class="span12 beer">
-          <img src="assets/img/banner-sd-1.png" width="940"
+          <img src="assets/img/banner-sd-1.png" width="960"
                tal:attributes="src view.url('banner/++download++picture')"/>
         </div>
       </div>

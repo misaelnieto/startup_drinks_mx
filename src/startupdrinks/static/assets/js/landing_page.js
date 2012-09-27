@@ -1,4 +1,6 @@
 $(document).ready(function() {
     'use strict';
-    $('.carousel').carousel();
+    $('.carousel').carousel({
+        interval: '5000'
+    });
 });
