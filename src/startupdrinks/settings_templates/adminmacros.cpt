@@ -54,7 +54,7 @@
               </li>
               <li>
                 <a href="#"
-                   tal:attributes="href string:${app_url}/gallery/">Mapa de ciudades</a>
+                   tal:attributes="href string:${app_url}/map/">Lista de ciudades</a>
               </li>
               <li>
                 <a href="#" tal:attributes="href string:${app_url}/gallery/">Galería</a></li>

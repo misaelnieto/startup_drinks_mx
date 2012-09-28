@@ -1,15 +1,18 @@
+from megrok.pagetemplate import PageTemplate
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from zope.component import getUtility
 from zope.schema.fieldproperty import FieldProperty
 from zope.traversing.api import getParent
 import grok
+import megrok.z3cform.base as z3cform
 
 from . import interfaces as ifaces
 from . import _
+from . import resource
 
 class Map(grok.Container):
     """
-    This contains all the places in the map. 
+    This contains all the places in the map.
     """
     grok.implements(ifaces.IMap)
 
@@ -26,6 +29,14 @@ class Place(grok.Context):
     latitude = FieldProperty(ifaces.IPlace['latitude'])
     longitude = FieldProperty(ifaces.IPlace['longitude'])
 
+    def __init__(self, title=u'', description=u'', url='', latitude=0.0, longitude=0.0):
+        super(Place, self).__init__()
+        self.title = title
+        self.description = description
+        self.url = url
+        self.latitude = latitude
+        self.longitude = longitude
+
 
 class Index(grok.View):
     """
@@ -33,64 +44,103 @@ class Index(grok.View):
     """
     grok.context(ifaces.IMap)
 
+    def update(self):
+        super(Index, self).update()
+        resource.bootstrap.need()
+        resource.admin_css.need()
 
-class AddPlace(grok.AddForm):
+class Places(grok.JSON):
+    grok.context(ifaces.IMap)
+
+    def places_json(self):
+        result = []
+        for place in self.context.values():
+            result.append({
+                'title': place.title,
+                'description': place.description,
+                'url': place.url,
+                'latitude': place.latitude,
+                'longitude': place. longitude
+            })
+        return result
+
+class AddPlace(z3cform.AddForm):
     """
     Used to add a place to the map
     """
-    grok.context(ifaces.IMap)
     grok.name('add')
-    form_fields = grok.AutoFields(ifaces.IPlace)
+    grok.context(ifaces.IMap)
+    grok.implements(ifaces.IMapForm)
+    # grok.require('sd.manage')
+    fields = z3cform.Fields(ifaces.IPlace)
     label = _(u'Add a place to the map')
 
-    @grok.action(_('Add'))
-    def handleAdd(self, **data):
-        #New instance of Place class with form data
-        nw_place = Place()
-        self.applyData(nw_place, **data)
+    def application_url(self, name=None, data=None):
+        return grok.util.application_url(self.request, self.context, name, data)
 
+    def update(self):
+        super(AddPlace, self).update()
+        resource.bootstrap.need()
+        resource.admin_css.need()
+        resource.map_edit_js.need()
+
+    def create(self, data):
+        #New instance of Place class with form data
+        return Place(
+            title = data['title'],
+            description = data['description'],
+            url = data['url'],
+            latitude = data['latitude'],
+            longitude = data['longitude']
+        )
+
+    def add(self, nw_place):
         #Get a url-safe name for the place object
         util = getUtility(IURLNormalizer)
         place_id = util.normalize(nw_place.title)
 
         #Add it to parent/context
         self.context[place_id] = nw_place
-        grok.notify(grok.ObjectCreatedEvent(nw_place))
 
         #Have fun!
         self.status = _(u'Yeah! New place added')
-        return self.redirect(self.url(self.context))
+
+    def nextURL(self):
+        return self.url(self.context)
 
 
-class EditPlace(grok.EditForm):
+class FormTemplate(PageTemplate):
+    grok.view(ifaces.IMapForm)
+
+
+class EditPlace(z3cform.EditForm):
     """
     Form to edit an already existing place
     """
     grok.context(ifaces.IPlace)
+    grok.implements(ifaces.IMapForm)
     grok.name('edit')
     form_fields = grok.AutoFields(ifaces.IPlace)
-    
-    @property
-    def label(self):
-        return _(u'You are editing: %s' % self.title)
+    label = _(u'You are editing a place')
+
+    def application_url(self, name=None, data=None):
+        return grok.util.application_url(self.request, self.context, name, data)
+
+    def update(self):
+        super(EditPlace, self).update()
+        resource.bootstrap.need()
+        resource.admin_css.need()
+        resource.map_edit_js.need()
 
 
-class DeletePlace(grok.Form):
-    """
-    Form to delete already existing place
-    """
+class DeletePlace(grok.View):
     grok.context(ifaces.IPlace)
     grok.name('delete')
-    
-    @property 
-    def label(self):
-        return _(u'Do you really want to delete %s' % self.title)
 
-    @grok.action(_(u'Delete'))
-    def handleDelete(self, **data):
+    def render(self):
         parent = getParent(self.context)
         name = self.context.__name__
         del parent[name]
 
-        self.status = _(u'The place %s has been deleted' % name)
-        self.redirect(self.url(self.context))
+        self.flash((u'The place %s has been deleted' % name))
+        return self.redirect(self.url(parent))

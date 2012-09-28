@@ -33,13 +33,18 @@ class IPlace(Interface):
         title=_(u'URL of the site')
     )
 
-    latitude = schema.Float(
+    latitude = schema.ASCIILine(
         title=_(u'Latitude'),
     )
 
-    longitude = schema.Float(
+    longitude = schema.ASCIILine(
         title=_(u'Longitude'),
     )
+
+class IMapForm(Interface):
+    """
+    Marker interface for z3c.forms that use a google map
+    """
 
 ######################################################
 # All this is for the gallery
