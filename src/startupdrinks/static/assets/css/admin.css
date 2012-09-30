@@ -5,3 +5,8 @@ body {
 .sidebar-nav {
     padding: 9px 0;
 }
+
+#form-widgets-body {
+    width: 640px;
+    height: 480px;
+}

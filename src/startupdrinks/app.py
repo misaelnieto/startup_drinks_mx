@@ -8,6 +8,7 @@ from . import interfaces as ifaces
 from .banner import Banner
 from .gallery import Gallery
 from .map import Map
+from .pages import PageFolder, Page
 
 class StartupDrinks(grok.Application, grok.Container):
     grok.implements(ifaces.IMainApp)
@@ -29,7 +30,11 @@ class StartupDrinks(grok.Application, grok.Container):
         self['map'] = Map()
         grok.notify(grok.ObjectCreatedEvent(self['map']))
 
-        #Add settings?
+        #Add Pages
+        self['pages'] = PageFolder()
+        grok.notify(grok.ObjectCreatedEvent(self['pages']))
+        self['pages']['asistentes'] = Page(title=u'Asistentes', body=u'Editame')
+        self['pages']['acerca-de'] = Page(title=u'Acerca de...', body=u'Editame')
 
 
 class Index(grok.View):

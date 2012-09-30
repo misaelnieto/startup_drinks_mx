@@ -59,9 +59,9 @@
               <li>
                 <a href="#" tal:attributes="href string:${app_url}/gallery/">Galería</a></li>
               <li>
-                <a href="#">Texto de asistentes</a></li>
+                <a href="#" tal:attributes="href string:${app_url}/pages/asistentes/edit">Texto de asistentes</a></li>
               <li>
-                <a href="#">Texto acerca de...</a></li>
+                <a href="#" tal:attributes="href string:${app_url}/pages/acerca-de/edit">Texto acerca de...</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

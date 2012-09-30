@@ -127,7 +127,6 @@ class EditPlace(z3cform.EditForm):
     grok.implements(ifaces.IMapForm)
     grok.name('edit')
     grok.require('sd.manage')
-    form_fields = grok.AutoFields(ifaces.IPlace)
     label = _(u'You are editing a place')
 
     def application_url(self, name=None, data=None):

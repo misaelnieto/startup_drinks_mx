@@ -76,3 +76,21 @@ class IBanner(Interface):
         title=_(u"Picture"),
         required=True
     )
+
+######################################################
+# All this is for the pages
+
+class IPageFolder(Interface):
+    """
+    This is a container for Pages 
+    """
+
+class IPage(Interface):
+    title = schema.TextLine(
+        title = _(u'Title'),
+        description = _(u'The title of the document')
+    )
+
+    body = schema.Text(
+        title = _(u'Text body'),
+    )
