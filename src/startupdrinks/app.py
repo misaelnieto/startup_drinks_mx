@@ -1,5 +1,6 @@
 import grok
 from itertools import izip_longest
+import megrok.login
 
 from . import resource
 from . import _
@@ -10,6 +11,8 @@ from .map import Map
 
 class StartupDrinks(grok.Application, grok.Container):
     grok.implements(ifaces.IMainApp)
+    megrok.login.enable()
+    megrok.login.viewname('login')
 
     def __init__(self):
         super(StartupDrinks, self).__init__()

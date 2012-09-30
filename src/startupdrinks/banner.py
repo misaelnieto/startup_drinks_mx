@@ -7,16 +7,16 @@ from . import interfaces as ifaces
 from . import _
 from . import resource
 
+
 class Banner(grok.Model):
-    grok.implements(ifaces.IBanner)    
+    grok.implements(ifaces.IBanner)
     picture = BlobProperty(ifaces.IPhoto['picture'])
 
 
 class BannerEditForm(z3cform.EditForm):
     grok.name('edit')
     grok.context(ifaces.IBanner)
-    # grok.require('sd.manage')
-    
+    grok.require('sd.manage')
     fields = z3cform.Fields(ifaces.IBanner)
     label = _ (u'Use this form to upload a new banner or replace the existing one.')
 

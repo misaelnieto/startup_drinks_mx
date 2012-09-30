@@ -29,6 +29,7 @@ class Photo(grok.Model):
 
 class Index(grok.View):
     grok.context(ifaces.IGallery)
+    grok.require('sd.manage')
 
     def update(self):
         super(Index, self).update()
@@ -39,7 +40,7 @@ class Index(grok.View):
 class AddPhoto(z3cform.AddForm):
     grok.name('add')
     grok.context(ifaces.IGallery)
-    # grok.require('sd.manage')
+    grok.require('sd.manage')
     fields = z3cform.Fields(ifaces.IPhoto)
     label = _(u'Use this form to add a new photo')
 
@@ -74,6 +75,7 @@ class AddPhoto(z3cform.AddForm):
 class DeletePhoto(grok.View):
     grok.context(ifaces.IPhoto)
     grok.name('delete')
+    grok.require('sd.manage')
 
     def render(self):
         parent = getParent(self.context)

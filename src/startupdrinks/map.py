@@ -10,6 +10,7 @@ from . import interfaces as ifaces
 from . import _
 from . import resource
 
+
 class Map(grok.Container):
     """
     This contains all the places in the map.
@@ -43,11 +44,13 @@ class Index(grok.View):
     This is the main view in the map (equivalent to index.html)
     """
     grok.context(ifaces.IMap)
+    grok.require('sd.manage')
 
     def update(self):
         super(Index, self).update()
         resource.bootstrap.need()
         resource.admin_css.need()
+
 
 class Places(grok.JSON):
     grok.context(ifaces.IMap)
@@ -64,6 +67,7 @@ class Places(grok.JSON):
             })
         return result
 
+
 class AddPlace(z3cform.AddForm):
     """
     Used to add a place to the map
@@ -71,7 +75,8 @@ class AddPlace(z3cform.AddForm):
     grok.name('add')
     grok.context(ifaces.IMap)
     grok.implements(ifaces.IMapForm)
-    # grok.require('sd.manage')
+    grok.require('sd.manage')
+
     fields = z3cform.Fields(ifaces.IPlace)
     label = _(u'Add a place to the map')
 
@@ -111,6 +116,7 @@ class AddPlace(z3cform.AddForm):
 
 class FormTemplate(PageTemplate):
     grok.view(ifaces.IMapForm)
+    grok.require('sd.manage')
 
 
 class EditPlace(z3cform.EditForm):
@@ -120,6 +126,7 @@ class EditPlace(z3cform.EditForm):
     grok.context(ifaces.IPlace)
     grok.implements(ifaces.IMapForm)
     grok.name('edit')
+    grok.require('sd.manage')
     form_fields = grok.AutoFields(ifaces.IPlace)
     label = _(u'You are editing a place')
 
@@ -136,6 +143,7 @@ class EditPlace(z3cform.EditForm):
 class DeletePlace(grok.View):
     grok.context(ifaces.IPlace)
     grok.name('delete')
+    grok.require('sd.manage')
 
     def render(self):
         parent = getParent(self.context)

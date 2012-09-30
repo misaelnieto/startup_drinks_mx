@@ -36,7 +36,7 @@ setup(name='startupdrinks',
                         'dolmen.widget.file',
                         'dolmen.widget.image',
                         'dolmen.thumbnailer',
-                        'plone.registry',
+                        'megrok.login',
                         ],
       entry_points={
           'fanstatic.libraries': [

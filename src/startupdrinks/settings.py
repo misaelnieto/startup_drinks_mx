@@ -9,35 +9,18 @@ from . import interfaces as ifaces
 from .events import OnAppInit
 from . import resource
 
-# Utilities
-
-# class GlobalRegistry(Registry, grok.LocalUtility):
-#     grok.site(ifaces.IConsworks)
-
-
-# @OnAppInit
-# def setup(event):
-#     app = event.object
-
-#     logger.info("Adding global settings.")
-#     registry = GlobalRegistry()
-#     sm = app.getSiteManager()
-#     sm.registerUtility(
-#         registry, provided=IRegistry, name="settings")
-
-#     registry.registerInterface(ifaces.IMailerSettings,
-#                                prefix='sd.MailerSettings')
-
 
 class AdminMacros(grok.View):
     """
     This is a helper view for ZPT macros
     """
     grok.context(Interface)
+    grok.require('sd.manage')
 
 
 class Admin(grok.View):
     grok.context(ifaces.IMainApp)
+    grok.require('sd.manage')
 
     def update(self):
         super(Admin, self).update()
@@ -47,3 +30,4 @@ class Admin(grok.View):
 
 class AdminFormTemplate(PageTemplate):
     grok.view(GrokForm)
+    grok.require('sd.manage')
