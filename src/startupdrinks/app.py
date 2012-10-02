@@ -35,6 +35,7 @@ class StartupDrinks(grok.Application, grok.Container):
         grok.notify(grok.ObjectCreatedEvent(self['pages']))
         self['pages']['asistentes'] = Page(title=u'Asistentes', body=u'Editame')
         self['pages']['acerca-de'] = Page(title=u'Acerca de...', body=u'Editame')
+        self['pages']['ciudades'] = Page(title=u'Ciudades', body=u'Editame')
 
 
 class Index(grok.View):

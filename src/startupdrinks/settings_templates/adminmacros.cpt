@@ -61,7 +61,11 @@
               <li>
                 <a href="#" tal:attributes="href string:${app_url}/pages/asistentes/edit">Texto de asistentes</a></li>
               <li>
-                <a href="#" tal:attributes="href string:${app_url}/pages/acerca-de/edit">Texto acerca de...</a></li>
+                <a href="#" tal:attributes="href string:${app_url}/pages/acerca-de/edit">Texto acerca de...</a>
+              </li>
+              <li>
+                <a href="#" tal:attributes="href string:${app_url}/pages/ciudades/edit">En tu ciudad</a>
+              </li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
