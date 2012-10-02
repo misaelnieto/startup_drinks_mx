@@ -72,16 +72,16 @@
       <div class="social row-fluid">
         <ul>
           <li>
-            <a href="https://twitter.com/#!/StartupDrinksMx" title="Síguenos en Twitter">
+            <a href="https://twitter.com/#!/StartupDrinksMx" title="Síguenos en Twitter"
+               target="_blank">
               <img src="fanstatic/sd_buildout/assets/img/twitter.png"
-                   target="_blank"
                    alt="Twitter"/>
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/StartUpDrinksMx" title="Síguenos en Facebook">
+            <a href="https://www.facebook.com/StartUpDrinksMx" title="Síguenos en Facebook"
+               target="_blank">
               <img src="fanstatic/sd_buildout/assets/img/facebook.png"
-                   target="blank_"
                    alt="Facebook">
             </a>
           </li>
