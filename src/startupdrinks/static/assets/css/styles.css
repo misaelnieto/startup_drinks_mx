@@ -119,6 +119,9 @@ footer {
     -webkit-box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
     -o-box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
     box-shadow: rgba(0, 92, 153, 0.2) 0 -2px 2px;
+
+    /*Temporal*/
+    display: none;
 }
 
 #global_sponsors {
