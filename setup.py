@@ -37,6 +37,8 @@ setup(name='startupdrinks',
                         'dolmen.widget.image',
                         'dolmen.thumbnailer',
                         'megrok.login',
+                        #Upgrade mechanism
+                        'zope.generations',
                         ],
       entry_points={
           'fanstatic.libraries': [

@@ -1,0 +1,15 @@
+<configure 
+   xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber
+      handler="zope.generations.generations.evolveSubscriber"
+      for="zope.app.appsetup.interfaces.IDatabaseOpenedWithRootEvent">
+    Evolve to current generation on startup
+  </subscriber>
+
+  <utility
+     name="startupdrinks"
+     provides="zope.generations.interfaces.ISchemaManager"
+     component=".schemaManager" />
+
+</configure>
