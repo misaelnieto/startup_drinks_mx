@@ -1,4 +1,5 @@
 from dolmen.blob import BlobProperty
+from zope.schema.fieldproperty import FieldProperty
 from zope.traversing.api import getParent
 import grok
 import megrok.z3cform.base as z3cform
@@ -10,7 +11,8 @@ from . import resource
 
 class Banner(grok.Model):
     grok.implements(ifaces.IBanner)
-    picture = BlobProperty(ifaces.IPhoto['picture'])
+    url = FieldProperty(ifaces.IBanner['url'])
+    picture = BlobProperty(ifaces.IBanner['picture'])
 
 
 class BannerEditForm(z3cform.EditForm):

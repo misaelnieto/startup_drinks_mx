@@ -72,10 +72,16 @@ class IBanner(Interface):
     """
     A Banner
     """
+    url = schema.URI(
+        title=_(u'URL of the site'),
+        description=_(u'Define this if you want the main banner to be clickable (useful for campaigns or selling spaces).'),
+        required=False
+    )
     picture = ImageField(
         title=_(u"Picture"),
         required=True
     )
+
 
 ######################################################
 # All this is for the pages

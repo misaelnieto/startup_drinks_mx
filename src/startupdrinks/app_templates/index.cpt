@@ -17,9 +17,16 @@
   <body>
     <div class="container">
       <div class="flyer row-fluid">
-        <div class="span12 beer">
+        <div class="span12 beer" tal:condition="not: path:context/banner/url">
           <img src="assets/img/banner-sd-1.png" width="960"
                tal:attributes="src view.url('banner/++download++picture')"/>
+        </div>
+        <div class="span12 beer" tal:condition="path:context/banner/url">
+          <a href="#" target="_blank"
+             tal:attributes="href path:context/banner/url">
+            <img src="assets/img/banner-sd-1.png" width="960"
+                 tal:attributes="src view.url('banner/++download++picture')"/>
+          </a>
         </div>
       </div>
       <div class="map row-fluid">
