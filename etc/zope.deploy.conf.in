@@ -1,0 +1,24 @@
+# Identify the component configuration used to define the site:
+site-definition ${site_zcml:output}
+
+<zodb>
+  <zeoclient>
+    blob-dir ${zope_conf:blobstorage}
+    shared-blob-dir on
+    server 127.0.0.1:${http-ports:zeo-server}
+    storage default
+    cache-size 20MB
+    # Uncomment to have a persistent disk cache
+    #client zeo1
+  </zeoclient>
+</zodb>
+
+<eventlog>
+# logfiles are setup in the debug.ini and deploy.ini files.
+</eventlog>
+
+devmode ${devmode}
+
+# Extra configuration lines can be added to zope_conf's extra option. Put for
+# instance productconf sections in here.
+${zope_conf:extra}

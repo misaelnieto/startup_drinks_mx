@@ -1,0 +1,13 @@
+#This is for paster
+${buildout:directory}/var/log/paster.d/*.log
+{
+    weekly
+    rotate 5
+    copytruncate
+    compress
+    size 100k
+    sharedscripts
+    postrotate
+      /bin/kill -USR1 `cat ${paster_ini_deploy:pid-file} 2> /dev/null` 2> /dev/null || true
+    endscript
+}

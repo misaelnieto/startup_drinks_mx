@@ -3,8 +3,8 @@ zope_conf = %(here)s/zope.deploy.conf
 
 [server:main]
 use = egg:Paste#http
-host = ${:host}
-port = ${:port}
+host = ${paster_ini_deploy:host}
+port = ${paster_ini_deploy:port}
 
 [pipeline:main]
 pipeline = accesslogging gzip fanstatic grok
@@ -55,13 +55,13 @@ keys = eventlog, accesslog
 
 [handler_eventlog]
 class = FileHandler
-args = (os.path.join(r'${buildout:directory}', 'var', 'log', 'event.log'), 'a')
+args = ('${paster_ini_deploy:event-log}', 'a')
 level = NOTSET
 formatter = generic
 
 [handler_accesslog]
 class = FileHandler
-args = (os.path.join(r'${buildout:directory}', 'var', 'log', 'accesslog.log'), 'a')
+args = ('${paster_ini_deploy:access-log}', 'a')
 level = INFO
 formatter = accesslog
 

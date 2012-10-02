@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "------------ `date` ------------"
+cd ${buildout:directory}
+
+#Run logrotate
+logrotate ${buildout:parts-directory}/etc/logrotate.conf -s ${buildout:directory}/var/log/misc.d/logrotate.status
+# Now the rest
+APP_NAME=${buildout:directory}
+PREVIOUS_SIZE=`ls -lh ./var/filestorage/Data.fs | cut -d" " -f5`
+./bin/zeopack -d0 127.0.0.1:${http-ports:zeo-server}:default
+PACK_STATUS=$?
+NEW_SIZE=`ls -lh ./var/filestorage/Data.fs | cut -d" " -f5`
+
+#Send notification email.
+mail -s "Maintenance for `basename $APP_NAME`" ${site-settings:mail-for-errors} <<EOF
+Hi. Just finished packing the Data.fs database and wanted to give you some stats.
+
+* The buildout path is $APP_NAME
+* The size of the Database before packing was: $PREVIOUS_SIZE
+* After packing, the database size is now: $NEW_SIZE
+* The pack command finished with status: $PACK_STATUS
+EOF
+
+echo "------------- OO -------------"
