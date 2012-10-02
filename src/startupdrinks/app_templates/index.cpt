@@ -34,7 +34,7 @@
           <ul class="links">
             <li><a href="#" data-toggle="modal" data-target="#asistentes">¿Quiénes asisten?</a></li>
             <li><a href="#" data-toggle="modal" data-target="#acerca-de">¿Qué es StartUpDrinks?</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#mapa">StartUpDrinks en tu ciudad</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#ciudad">StartUpDrinks en tu ciudad</a></li>
           </ul>
           <ul class="logos">
             <li>
@@ -136,9 +136,9 @@
       <div class="modal hide fade" id="ciudad" tabindex="-1" role="dialog" aria-labelledby="ciudad-title" aria-hidden="true">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="ciudad-title" tal:content="structure path:context/pages/acerca-de/title">En tu ciudad</h3>
+          <h3 id="ciudad-title" tal:content="structure path:context/pages/ciudades/title">En tu ciudad</h3>
         </div>
-        <div class="modal-body" tal:content="structure path:context/pages/acerca-de/body">
+        <div class="modal-body" tal:content="structure path:context/pages/ciudades/body">
           Algo con un link
         </div>
       </div>
