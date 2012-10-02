@@ -78,6 +78,11 @@
     height: 100%;
 }
 
+.slideshow {
+    margin: 0;
+    height: 225px;
+}
+
 .carousel {
     height: 225px;
     background: #000;
@@ -97,6 +102,35 @@
     /*float: left;*/
     width: 300px;
     position: relative;
+}
+
+.social {
+    background: #000;
+}
+
+.social ul{
+    list-style: none;
+    text-align: center;
+    margin: 0.5em;
+}
+
+.social ul li {
+    display: inline;
+}
+
+.social ul li a {
+    height: 48px;
+    width: 48px;
+    margin: 0.5em;
+}
+
+.social ul li a:hover{
+    text-decoration: none;
+}
+
+.social p {
+    text-align: center;
+    color: #888;
 }
 
 footer {
@@ -132,3 +166,4 @@ footer #global_sponsors img {
     max-width: 150px;
     max-height: 50px;
 }
+
