@@ -16,19 +16,31 @@
             tal:attributes="href string:${base_url}/gallery/add">Upload a new pic</a>
       </div>
       <ul class="thumbnails">
-        <li class="span4"
+        <li class="thumbnail"
             tal:repeat="photo path:context/values">
-            <div class="thumbnail">
+            <div class="" tal:omit-tag="">
               <img src="http://placehold.it/300x200" 
-                   height="300" width="300"
-                   tal:attributes="src view.url(photo, '++download++picture')"/>
-              <h3 tal:content="path: photo/picture/filename">file_name.jpg</h3>
-              <p tal:content="path: photo/description">
-                Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-                id nibh ultricies vehicula ut id elit.
-              </p>
-              <a class="btn btn-danger" href="#"
-                 tal:attributes="href view.url(photo, 'delete')">Destroy it!</a>
+                   height="200" width="300"
+                   tal:attributes="src view.url(photo, '++thumbnail++picture.gallery')"/>
+              <dl>
+                <dt i18n:translate="">File name:</dt>
+                <dd tal:content="path: photo/picture/filename">file_name.jpg</dd>
+                <dt>Description:</dt>
+                <dd class="description">
+                  <p tal:condition="path: photo/description"
+                     tal:content="path: photo/description">
+                    Donec id elit non mi porta gravida at eget metus. Nullam id dolor
+                    id nibh ultricies vehicula ut id elit.
+                  </p>
+                  <p tal:condition="not: path:photo/description">No description</p>
+                </dd>
+              </dl>
+              <div class="btn-group">
+                <a class="btn btn-danger btn-small" href="#"
+                   tal:attributes="href view.url(photo, 'delete')">Delete</a>
+                <a class="btn btn-primary btn-small" href="#"
+                   tal:attributes="href view.url(photo, 'edit')">Edit</a>
+              </div>
             </div>
         </li>
       </ul>

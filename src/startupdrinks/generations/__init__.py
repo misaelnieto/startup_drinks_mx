@@ -5,7 +5,7 @@ from zope.site.hooks import setSite
 
 from .. import interfaces as ifaces
 
-GENERATION = 1
+GENERATION = 2
 
 class MySchemaManager(SchemaManager):
     def evolve(self, context, generation):

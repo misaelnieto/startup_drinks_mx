@@ -70,6 +70,22 @@ class AddPhoto(z3cform.AddForm):
     def nextURL(self):
         return self.url(self.context)
 
+class EditPhoto(z3cform.EditForm):
+    grok.name('edit')
+    grok.context(ifaces.IPhoto)
+    grok.require('sd.manage')
+    label = _(u'Edit the photo')
+
+    def application_url(self, name=None, data=None):
+        return grok.util.application_url(self.request, self.context, name, data)
+
+    def update(self):
+        super(EditPhoto, self).update()
+        resource.bootstrap.need()
+        resource.admin_css.need()
+
+    def nextURL(self):
+        return self.url(self.context)
 
 
 class DeletePhoto(grok.View):

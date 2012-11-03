@@ -12,5 +12,13 @@
   <include package=".generations" />
   <grok:grok package="." />
 
- 
+  <class class="dolmen.file.file.NamedFile">
+    <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+  </class>
+
+  <class class="dolmen.blob.file.BlobValue">
+    <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+  </class>
+
+
 </configure>

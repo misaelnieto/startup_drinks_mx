@@ -61,8 +61,8 @@
                  tal:attributes="href view.url(photo, '++download++picture')"
                  tal:condition="photo">
                 <img src="http://placehold.it/300x200" 
-                     height="640" width="480"
-                     tal:attributes="src view.url(photo, '++download++picture')"
+                     height="200" width="300"
+                     tal:attributes="src view.url(photo, '++thumbnail++picture.gallery')"
                      />
                 <div class="carousel-caption">
                   <p tal:content="photo.description">Lorem ipsum caption</p>

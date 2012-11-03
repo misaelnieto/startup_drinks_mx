@@ -10,3 +10,13 @@ body {
     width: 640px;
     height: 480px;
 }
+
+.thumbnails img {
+    height: 200px;
+    width: 300px;
+}
+
+dd.description {
+    height: 4em;
+    overflow: visible;
+}
