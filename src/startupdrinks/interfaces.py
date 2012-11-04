@@ -100,3 +100,25 @@ class IPage(Interface):
     body = schema.Text(
         title = _(u'Text body'),
     )
+
+######################################################
+# All this is for the sponsors
+
+class ISponsorsContainer(Interface):
+    """
+    This is quite similar to the Gallery. It contains 
+    a special type of photos.
+    """
+
+class ISponsor(Interface):
+    description = schema.Text(
+        title=_(u"Description"),
+        required=False
+    )
+    url = schema.URI(
+        title=_(u'URL of the site')
+    )
+    picture = ImageField(
+        title=_(u"Picture"),
+        required=True
+    )

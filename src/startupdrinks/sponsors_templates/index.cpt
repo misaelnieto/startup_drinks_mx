@@ -9,10 +9,10 @@
 <body>
     <!-- slot 'mycontent' was defined in adminmacros.cpt -->
     <div metal:fill-slot="admin_content">
-      <h1>This is the gallery</h1>
+      <h1>Sponsors list</h1>
       <div class="well">
          <a class="btn btn-large btn-primary" href="#" 
-            tal:attributes="href view.url('add')">Upload a new pic</a>
+            tal:attributes="href view.url('add')">Add a new sponsor</a>
       </div>
       <ul class="thumbnails">
         <li class="thumbnail"
@@ -33,6 +33,11 @@
                   </p>
                   <p tal:condition="not: path:photo/description">No description</p>
                 </dd>
+                <dt>URL link</dt>
+                <dd>
+                  <a href="#" target="_blank" 
+                     tal:attributes="href path: photo/url">Open link</a>
+                </dd>
               </dl>
               <div class="btn-group">
                 <a class="btn btn-danger btn-small" href="#"
@@ -45,7 +50,7 @@
       </ul>
       <div class="well" tal:condition="len(context.keys())">
          <a class="btn btn-large btn-primary"
-            tal:attributes="href view.url('add')">Upload a new pic</a>
+            tal:attributes="href view.url('add')">Add a new sponsor</a>
       </div>
     </div>
 </body>

@@ -96,20 +96,15 @@
         <p>&copy; copyright 2012 Angel Ventures</p>
       </div>
     </div> <!-- /container -->
-    <footer id="sponsors-footer">
+    <footer id="sponsors-footer" tal:condition="len(context['sponsors'])">
       <div id="global_sponsors">
-        <a href="http://google.com" data-bitly-type="bitly_hover_card">
-          <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2012/08/Primary-GforE.png" /></a>
-          <a href="http://www.go.co/" data-bitly-type="bitly_hover_card">
-            <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2012/04/dotco-logo_rgb.png" /></a>
-          <a href="http://www.microsoft.com/bizspark/Partners/startupweekend.aspx" data-bitly-type="bitly_hover_card">
-            <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2010/12/BizSpark1.png" /></a>
-          <a href="http://cloudmine.me/" data-bitly-type="bitly_hover_card">
-            <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2012/02/cloudmine1.png" /></a>
-          <a href="http://sendgrid.com/" data-bitly-type="bitly_hover_card">
-            <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2012/02/sendgrid.jpg" /></a>
-          <a href="http://www.domain.com/join/index.bml?AffID=703859&amp;LinkName=startup" data-bitly-type="bitly_hover_card">
-              <img src="http://startupweekend.org/wp-content/blogs.dir/1/files/2012/08/Domain-com.png" /></a>      
+        <tal:block repeat="sponsor path:context/sponsors/values">
+        <a href="#" title="foo" target="_blank"
+           tal:attributes="href sponsor.url; 
+                           title sponsor.description">
+          <img src="" tal:attributes="src view.url(sponsor, '++thumbnail++picture.small')"/>
+        </a>
+        </tal:block>
       </div>
     </footer>
     <div id="modals">

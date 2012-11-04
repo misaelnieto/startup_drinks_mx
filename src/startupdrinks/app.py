@@ -2,13 +2,15 @@ import grok
 from itertools import izip_longest
 import megrok.login
 
-from . import resource
 from . import _
 from . import interfaces as ifaces
+from . import resource
 from .banner import Banner
 from .gallery import Gallery
 from .map import Map
 from .pages import PageFolder, Page
+from .sponsors import SponsorsContainer
+
 
 class StartupDrinks(grok.Application, grok.Container):
     grok.implements(ifaces.IMainApp)
@@ -36,6 +38,10 @@ class StartupDrinks(grok.Application, grok.Container):
         self['pages']['asistentes'] = Page(title=u'Asistentes', body=u'Editame')
         self['pages']['acerca-de'] = Page(title=u'Acerca de...', body=u'Editame')
         self['pages']['ciudades'] = Page(title=u'Ciudades', body=u'Editame')
+
+        # Add Sponsors
+        self['sponsors'] = SponsorsContainer()
+        grok.notify(grok.ObjectCreatedEvent(self['gallery']))
 
 
 class Index(grok.View):

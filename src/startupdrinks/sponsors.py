@@ -11,24 +11,26 @@ from . import _
 from . import resource
 
 
-class Gallery(grok.OrderedContainer):
-    grok.implements(ifaces.IGallery)
+class SponsorsContainer(grok.OrderedContainer):
+    grok.implements(ifaces.ISponsorsContainer)
 
 
-class Photo(grok.Model):
-    grok.implements(ifaces.IPhoto)
+class Sponsor(grok.Model):
+    grok.implements(ifaces.ISponsor, ifaces.IPhoto)
 
-    picture = BlobProperty(ifaces.IPhoto['picture'])
-    description = FieldProperty(ifaces.IPhoto['description'])
+    description = FieldProperty(ifaces.ISponsor['description'])
+    picture = BlobProperty(ifaces.ISponsor['picture'])
+    url = FieldProperty(ifaces.ISponsor['url'])
 
-    def __init__(self, picture=None, description=u''):
-        super(Photo, self).__init__()
+    def __init__(self, picture=None, description=u'', url=''):
+        super(Sponsor, self).__init__()
         self.picture = picture
         self.description = description
+        self.url = url
 
 
 class Index(grok.View):
-    grok.context(ifaces.IGallery)
+    grok.context(ifaces.ISponsorsContainer)
     grok.require('sd.manage')
 
     def update(self):
@@ -37,51 +39,52 @@ class Index(grok.View):
         resource.admin_css.need()
 
 
-class AddPhoto(z3cform.AddForm):
+class AddSponsor(z3cform.AddForm):
     grok.name('add')
-    grok.context(ifaces.IGallery)
+    grok.context(ifaces.ISponsorsContainer)
     grok.require('sd.manage')
-    fields = z3cform.Fields(ifaces.IPhoto)
-    label = _(u'Use this form to add a new photo')
+    fields = z3cform.Fields(ifaces.ISponsor)
+    label = _(u'Use this form to add a new sponsor')
 
     def application_url(self, name=None, data=None):
         return grok.util.application_url(self.request, self.context, name, data)
 
     def update(self):
-        super(AddPhoto, self).update()
+        super(AddSponsor, self).update()
         resource.bootstrap.need()
         resource.admin_css.need()
 
     def create(self, data):
-        return Photo(
+        return Sponsor(
             picture=data['picture'], 
-            description=data['description']
+            description=data['description'],
+            url=data['url']
         )
 
-    def add(self, nw_photo):
+    def add(self, nw_sponsor):
         #Now, get a url-safe title for the photo
         util = getUtility(IURLNormalizer)
-        photo_id = util.normalize(nw_photo.picture.filename)
+        photo_id = util.normalize(nw_sponsor.picture.filename)
 
         #Add it to parent/context
-        self.context[photo_id] = nw_photo
-        self.status = _(u'Yay! New photo added!')
+        self.context[photo_id] = nw_sponsor
+        self.status = _(u'Yay! New sponsor added!')
 
     def nextURL(self):
         return self.url(self.context)
 
 
-class EditPhoto(z3cform.EditForm):
+class EditSponsor(z3cform.EditForm):
     grok.name('edit')
-    grok.context(ifaces.IPhoto)
+    grok.context(ifaces.ISponsor)
     grok.require('sd.manage')
-    label = _(u'Edit the photo')
+    label = _(u'Edit the sponsor')
 
     def application_url(self, name=None, data=None):
         return grok.util.application_url(self.request, self.context, name, data)
 
     def update(self):
-        super(EditPhoto, self).update()
+        super(EditSponsor, self).update()
         resource.bootstrap.need()
         resource.admin_css.need()
 
@@ -90,7 +93,7 @@ class EditPhoto(z3cform.EditForm):
 
 
 class DeletePhoto(grok.View):
-    grok.context(ifaces.IPhoto)
+    grok.context(ifaces.ISponsor)
     grok.name('delete')
     grok.require('sd.manage')
 
@@ -99,5 +102,5 @@ class DeletePhoto(grok.View):
         name = self.context.__name__
         del parent[name]
 
-        self.flash((u'The photo %s has been deleted' % name))
+        self.flash((u'The sponsor %s has been deleted' % name))
         return self.redirect(self.url(parent))
