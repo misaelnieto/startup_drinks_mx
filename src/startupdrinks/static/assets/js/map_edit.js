@@ -27,8 +27,8 @@ function initializeMap() {
         title:"Mueve el marcador para seleccionar la posicion del evento"
     });
     google.maps.event.addListener(marker, 'mouseup', function(evt) {
-        lat_input.value = evt.latLng.Xa;
-        lon_input.value = evt.latLng.Ya;
+        lat_input.value = evt.latLng.lat();
+        lon_input.value = evt.latLng.lng();
     });
 
 }
